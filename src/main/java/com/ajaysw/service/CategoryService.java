@@ -1,17 +1,17 @@
 package com.ajaysw.service;
 
 import com.ajaysw.model.Category;
-
-import java.util.List;
+import com.ajaysw.payload.CategoryDTO;
+import com.ajaysw.payload.CategoryResponse;
 
 public interface CategoryService {
 
-    List<Category> getAllCategories();
+    CategoryResponse getAllCategories();
 
-    String createCategory(Category category);
+    CategoryDTO createCategory(CategoryDTO categoryDTO);
 
-    String deleteCategory(Long categoryId);
+    CategoryDTO deleteCategory(Long categoryId);
 
-    Category updateCategory(Long categoryId, Category category);
+    CategoryDTO updateCategory(Long categoryId, CategoryDTO categoryDTO);
 
 }
