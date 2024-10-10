@@ -1,8 +1,8 @@
 package com.ajaysw.controller;
 
 import com.ajaysw.config.AppConstants;
-import com.ajaysw.payload.CategoryDTO;
-import com.ajaysw.payload.CategoryResponse;
+import com.ajaysw.model.payload.CategoryDTO;
+import com.ajaysw.model.payload.CategoryResponse;
 import com.ajaysw.service.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,7 @@
 package com.ajaysw.service;
 
-import com.ajaysw.model.Category;
-import com.ajaysw.payload.CategoryDTO;
-import com.ajaysw.payload.CategoryResponse;
+import com.ajaysw.model.payload.CategoryDTO;
+import com.ajaysw.model.payload.CategoryResponse;
 
 public interface CategoryService {
 

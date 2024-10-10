@@ -1,4 +1,4 @@
-package com.ajaysw.payload;
+package com.ajaysw.model.payload;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
