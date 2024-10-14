@@ -1,9 +1,8 @@
 package com.ajaysw.controller;
 
 import com.ajaysw.config.AppConstants;
-import com.ajaysw.model.Product;
-import com.ajaysw.model.payload.ProductDTO;
-import com.ajaysw.model.payload.ProductResponse;
+import com.ajaysw.payload.ProductDTO;
+import com.ajaysw.payload.response.ProductResponse;
 import com.ajaysw.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

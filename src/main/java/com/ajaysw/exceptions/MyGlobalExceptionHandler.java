@@ -1,6 +1,6 @@
 package com.ajaysw.exceptions;
 
-import com.ajaysw.model.payload.APIResponse;
+import com.ajaysw.payload.response.APIResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

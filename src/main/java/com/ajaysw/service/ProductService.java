@@ -1,7 +1,7 @@
 package com.ajaysw.service;
 
-import com.ajaysw.model.payload.ProductDTO;
-import com.ajaysw.model.payload.ProductResponse;
+import com.ajaysw.payload.ProductDTO;
+import com.ajaysw.payload.response.ProductResponse;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;

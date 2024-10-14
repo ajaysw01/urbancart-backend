@@ -5,8 +5,8 @@ import com.ajaysw.repository.CategoryRepository;
 import com.ajaysw.exceptions.ResourceNotFoundException;
 import com.ajaysw.model.Category;
 import com.ajaysw.model.Product;
-import com.ajaysw.model.payload.ProductDTO;
-import com.ajaysw.model.payload.ProductResponse;
+import com.ajaysw.payload.ProductDTO;
+import com.ajaysw.payload.response.ProductResponse;
 import com.ajaysw.repository.ProductRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,29 +51,23 @@ public class ProductServiceImpl implements ProductService {
                 break;
             }
         }
-
         if (isProductNotPresent) {
             Product product = modelMapper.map(productDTO, Product.class);
             product.setCategory(category);
-
             // Calculate the special price based on the discount
-            double specialPrice = product.getPrice() * (1 - ((double) product.getDiscount() / 100));
+            double specialPrice = productDTO.getPrice() * (1 - ((double) productDTO.getDiscount() / 100));
             product.setSpecialPrice(specialPrice);
-
             // Set default image if none is provided
             if (product.getImage() == null || product.getImage().isEmpty()) {
                 product.setImage("default.png");
             }
-
             Product savedProduct = productRepository.save(product);
-
             return modelMapper.map(savedProduct, ProductDTO.class);
-
         }
         else{
             throw new ApiException("product already exists");
         }
-        }
+    }
     @Override
     public ProductResponse getAllProducts(Integer pageNumber, Integer pageSize, String sortBy, String sortOrder) {
         Sort sortByAndOrder = sortOrder.equalsIgnoreCase("asc")
@@ -102,7 +96,6 @@ public class ProductServiceImpl implements ProductService {
     public ProductResponse searchByCategoryId(Long categoryId, Integer pageNumber, Integer pageSize, String sortBy, String sortOrder) {
         Category category = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new ResourceNotFoundException("Category","categoryId",categoryId));
-
         Sort sortByAndOrder = sortOrder.equalsIgnoreCase("asc")
                 ? Sort.by(sortBy).ascending()
                 : Sort.by(sortBy).descending();
@@ -119,20 +112,17 @@ public class ProductServiceImpl implements ProductService {
         productResponse.setTotalElements(pageProducts.getTotalElements());
         productResponse.setTotalPages(pageProducts.getTotalElements());
         productResponse.setLastPage(pageProducts.isLast());
-
         return productResponse;
     }
 
     @Override
     public ProductResponse searchProductByKeyword(String keyword, Integer pageNumber, Integer pageSize, String sortBy, String sortOrder) {
-
         Sort sortByAndOrder = sortOrder.equalsIgnoreCase("asc")
                 ? Sort.by(sortBy).ascending()
                 : Sort.by(sortBy).descending();
         Pageable pageDetails = PageRequest.of(pageNumber,pageSize,sortByAndOrder);
         Page<Product> pageProducts = productRepository.findByProductNameLikeIgnoreCase('%'+keyword+'%',pageDetails);
         List<Product> products =pageProducts.getContent();
-
         List<ProductDTO> productDTOS = products.stream()
                 .map(product -> modelMapper.map(product, ProductDTO.class))
                 .toList();
@@ -186,7 +176,6 @@ public class ProductServiceImpl implements ProductService {
 
         // updating the new file name to the prodcut
         productFromDb.setImage(filename);
-
         //save updated product
         Product updatedProduct = productRepository.save(productFromDb);
 

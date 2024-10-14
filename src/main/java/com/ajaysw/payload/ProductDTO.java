@@ -1,4 +1,4 @@
-package com.ajaysw.model.payload;
+package com.ajaysw.payload;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,5 +14,6 @@ public class ProductDTO {
     private String image;
     private Integer quantity;
     private double price;
+    private double discount;
     private double specialPrice;
 }
