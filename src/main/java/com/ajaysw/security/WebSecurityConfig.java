@@ -1,5 +1,7 @@
 package com.ajaysw.security;
 
+import com.ajaysw.security.jwt.AuthEntryPointJwt;
+import com.ajaysw.security.jwt.AuthTokenFilter;
 import com.ajaysw.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
