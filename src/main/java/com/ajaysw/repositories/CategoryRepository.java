@@ -1,4 +1,4 @@
-package com.ajaysw.repository;
+package com.ajaysw.repositories;
 
 import com.ajaysw.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;

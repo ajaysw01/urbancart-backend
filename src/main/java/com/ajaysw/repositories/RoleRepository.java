@@ -1,4 +1,4 @@
-package com.ajaysw.repository;
+package com.ajaysw.repositories;
 
 import com.ajaysw.constants.AppRole;
 import com.ajaysw.model.Role;

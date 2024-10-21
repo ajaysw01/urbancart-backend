@@ -1,13 +1,13 @@
 package com.ajaysw.service;
 
 import com.ajaysw.exceptions.ApiException;
-import com.ajaysw.repository.CategoryRepository;
+import com.ajaysw.repositories.CategoryRepository;
 import com.ajaysw.exceptions.ResourceNotFoundException;
 import com.ajaysw.model.Category;
 import com.ajaysw.model.Product;
 import com.ajaysw.payload.ProductDTO;
 import com.ajaysw.payload.response.ProductResponse;
-import com.ajaysw.repository.ProductRepository;
+import com.ajaysw.repositories.ProductRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

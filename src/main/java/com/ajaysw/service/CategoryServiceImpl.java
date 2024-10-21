@@ -1,6 +1,6 @@
 package com.ajaysw.service;
 
-import com.ajaysw.repository.CategoryRepository;
+import com.ajaysw.repositories.CategoryRepository;
 import com.ajaysw.exceptions.ApiException;
 import com.ajaysw.exceptions.ResourceNotFoundException;
 import com.ajaysw.model.Category;

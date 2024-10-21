@@ -1,7 +1,7 @@
 package com.ajaysw.security.services;
 
 import com.ajaysw.model.User;
-import com.ajaysw.repository.UserRepository;
+import com.ajaysw.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
