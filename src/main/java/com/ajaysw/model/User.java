@@ -13,14 +13,13 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
-@Table(
-        name = "users",
+@NoArgsConstructor
+@Table(name = "users",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "username"),
-                @UniqueConstraint(columnNames = "email")})
+                @UniqueConstraint(columnNames = "email")
+        })
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,53 +27,51 @@ public class User {
     private Long userId;
 
     @NotBlank
-    @Size(max=20)
+    @Size(max = 20)
     @Column(name = "username")
-    private String username;
+    private String userName;
 
     @NotBlank
-    @Size(max=50)
+    @Size(max = 50)
     @Email
     @Column(name = "email")
     private String email;
 
     @NotBlank
-    @Size(max=120)
+    @Size(max = 120)
     @Column(name = "password")
     private String password;
 
-    public User(String username, String email, String password) {
-        this.username = username;
+    public User(String userName, String email, String password) {
+        this.userName = userName;
         this.email = email;
         this.password = password;
     }
 
-    @Getter
     @Setter
-    @ManyToMany(fetch = FetchType.EAGER,
-    cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-    @JoinTable(
-            name = "user_role",
+    @Getter
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    public Set<Role> roles = new HashSet<>();
+    private Set<Role> roles = new HashSet<>();
 
-
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "user_address",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "address_d")
-    )
     @Getter
     @Setter
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "user_address",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "address_id"))
     private List<Address> addresses = new ArrayList<>();
 
-    @OneToMany(
-            mappedBy = "user",
-            cascade = {CascadeType.PERSIST,CascadeType.MERGE},
-            orphanRemoval = true)
     @ToString.Exclude
-    private Set<Product> products;
+    @OneToOne(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+    private Cart cart;
 
+    @ToString.Exclude
+    @OneToMany(mappedBy = "user",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            orphanRemoval = true)
+    private Set<Product> products;
 }
